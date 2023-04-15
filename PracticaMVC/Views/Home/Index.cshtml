@@ -2,52 +2,64 @@
     ViewData["Title"] = "Home Page";
 }
 @{
-    IEnumerable<string> strLista = new List<string> { "LAPTOP", "IMPRESORA", "ACCESORIOS", "PROYECTORES" };
+    IEnumerable<string> strLista = new List<string> { "POO","TW","MAT3","FIS1" };
 }
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
-    <h2>Mantenimiento de Equipos</h2> 
+    <h2>Formularios con Razor y HTML Helper</h2> 
 </div>
 
 <div class="row">
+    
+    <div class="form-group row">
+        <label for="inputEmail3" class="col-form-label mx-auto p-2" style="width: 200px;">Nombre de Usuario</label>
+        <div class="col-sm-5">
+            <input type="text" class="form-control" id="inputNombre" placeholder="Nombre">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="inputContra3" class="col-form-label mx-auto p-2 " style="width: 200px;">Contraseña</label>
+        <div class="col-sm-5 h-100">
+            <input type="text" class="form-control" id="inputContra" placeholder="Contraseña">
+        </div>
+    </div>
+    
     <div class="form-group">
-        <label> Nombre Equipo</label>
-        @Html.TextBox("txtNombre", "", new {@class="form-control"})
+        @Html.Label("lblGenero","Genero")
+        @Html.RadioButton("Genero","Masculino", true, new{id="masculino"}) Masculino
+        @Html.RadioButton("Genero","Femenino", false, new{id="femenino"}) Femenino
     </div>
     <div class="form-group">
-        @Html.Label("lblDescripcion","Descripcion")
-        @Html.TextArea("txaDescripcion","Valor asignado",new {@class="form-control"})
+        @Html.Label("lblDireccion","Direccion")
+        @Html.TextArea("txaDireccion","",new {@class="form-control"})
+    </div>
+    
+    <div class="form-group">
+    @Html.Label("lblPas","Pasatiempos")
+        @Html.CheckBox("estado") Bailar
+        @Html.CheckBox("estado") Correr
+        @Html.CheckBox("estado") Escalar
+        @Html.CheckBox("estado") Peliculas
     </div>
     <div class="form-group">
-        @Html.Label("lblModelo","Modelo")
-        @Html.TextBox("txtModelo","",new{@class="form-control"})
+        @Html.Label("lblCurso","Curso")
+        @Html.DropDownList("AddTipoEquipo", new SelectList(strLista),"Seleccionar un curso")
     </div>
+    
     <div class="form-group">
-        @Html.Label("lblAnioCompra","Año de Compra")
-        @Html.ListBox("Lista",new List<SelectListItem>{
-            new SelectListItem{Text="2005", Value="2005"},
-            new SelectListItem{Text="2006", Value="2006"},
-            new SelectListItem{Text="2007", Value="2005"}
+        @Html.Label("lblCono","Conocimientos")
+        @Html.ListBox("Seleccionar habilidades",new List<SelectListItem>{ 
+            new SelectListItem {Text="C#",Value="1"},
+            new SelectListItem {Text="ASP.NET",Value="2"},
+            new SelectListItem {Text="ASP.NET Core",Value="3"},
+            new SelectListItem {Text="Azure",Value="4"}
         })
     </div>
-    <div class="form-group">
-        @Html.Label("lblCosto","Costo")
-        @Html.TextBox("txtCosto","",new{@class="form-control"})
-    </div >
-    <div class="form-group">
-        @Html.Label("lblVidaUtil","Vida Util")
-        @Html.TextBox("txtVidaUtil","",new{@class="form-control"})
-    </div>
-    <div class="form-group">
-        @Html.Label("lblTip","Tipo de Equipo")
-        @Html.DropDownList("AddTipoEquipo", new SelectList(strLista),"Seleccionar un tipo")
-    </div>
-    <div class="form-group">
-        @Html.CheckBox("estado") Inactivo
-    </div>
+
+    
     <div class="form-group">
         <input type="submit" class="btn btn-primary" value="Guardar" />
-        @Html.ActionLink("Guardar","Guardar","Home")
+        
     </div>
 </div>
